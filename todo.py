@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 def init_db(app):
-  app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/todoitems.db"
   db.init_app(app)
+  return
 
 class ToDoItem(db.Model):
   __tablename__ = "todoitems"

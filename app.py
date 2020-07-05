@@ -3,7 +3,9 @@ from todo import ToDoList, init_db
 
 app = Flask(__name__)
 
-db = init_db(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/todoitems.db"
+init_db(app)
 
 todolist = ToDoList()
 
@@ -36,3 +38,7 @@ def update_done():
   items = [int(x) for x in keys]
   todolist.update_done(items)
   return redirect("/")
+
+
+if __name__ == '__main__':
+  app.run()
